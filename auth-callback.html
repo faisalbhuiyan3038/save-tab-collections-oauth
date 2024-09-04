@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive OAuth2 Callback</title>
+</head>
+<body>
+    <script>
+        // Extract the access token from the URL hash
+        const params = new URLSearchParams(window.location.hash.substring(1));
+        const accessToken = params.get('access_token');
+        const expiresIn = params.get('expires_in');
+
+        if (accessToken) {
+            // Send the token back to the Firefox addon
+            window.opener.postMessage({ accessToken, expiresIn }, '*');
+            window.close();  // Close the authentication window
+        } else {
+            // Handle errors (e.g., access denied)
+            console.error('Failed to obtain access token');
+        }
+    </script>
+</body>
+</html>

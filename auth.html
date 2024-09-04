@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive OAuth2</title>
+</head>
+<body>
+    <script>
+        // Replace with your OAuth2 credentials
+        const clientId = "1091885613829-sgj5utgcfmfq6553ve3ca95nmtkfvdui.apps.googleusercontent.com";
+        const redirectUri = window.location.origin + '/auth-callback.html';
+        const scope = 'https://www.googleapis.com/auth/drive.file';
+
+        // Create the OAuth2 URL
+        const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&prompt=consent`;
+
+        // Redirect to the Google OAuth2 authorization URL
+        window.location.href = authUrl;
+    </script>
+</body>
+</html>
