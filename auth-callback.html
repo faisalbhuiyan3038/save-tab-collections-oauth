@@ -13,8 +13,8 @@
         const expiresIn = params.get('expires_in');
 
         if (accessToken) {
-            // Send the token back to the Firefox addon
-            window.opener.postMessage({ accessToken, expiresIn }, '*');
+            // Send the token back to the parent window
+            window.opener.postMessage({ accessToken, expiresIn }, window.location.origin);
             window.close();  // Close the authentication window
         } else {
             // Handle errors (e.g., access denied)
