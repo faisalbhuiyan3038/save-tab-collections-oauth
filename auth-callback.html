@@ -14,7 +14,9 @@
 
         if (accessToken) {
             // Send the token back to the parent window
+            console.log("inside accessToken if condition");
             window.opener.postMessage({ accessToken, expiresIn }, window.location.origin);
+            console.log(window.location.origin);
             window.close();  // Close the authentication window
         } else {
             // Handle errors (e.g., access denied)
